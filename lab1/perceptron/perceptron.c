@@ -1,71 +1,70 @@
+
 #include <stdio.h>
+#include <stdlib.h>
 #include "perceptron.h"
 
-int main(int argc, char **argv)
+#define DATA_SIZE 10
+#define LEARNING_RATE 0.15
+#define MAX_EPOCHS 100
+
+int activation(double x1, double x2, double w1, double w2, double w3)
 {
-  Node     data[DATA_SIZE];
-  double   weight[WEIGHT_SIZE];
+    double y = x1 * w1 + x2 * w2 + w3;
+    return (y >= 0) ? 1 : -1;
+}
 
-  initialize_data(data,weight);
-
-  int step=0, func_res;
-  while(step < DATA_SIZE)
-  {
-
-    print_data(&data[step], weight, step);
-    func_res = activation_func(data, weight);
-    printf("\nActivation function result: %d\n", func_res);
-    if(func_res == data[step].expected_value_)
+void initialize_data(Data *data)
+{
+    printf("INITIALIZING DATA FROM USER..\n");
+    for (int i = 0; i < DATA_SIZE; i++)
     {
-      printf("\nstep %d. Done!\ndata:\n", step+1);
-      step++; 
-    }    
-    else 
-    {
-        printf("\nstep %d. Unsatisfactory result. fixing our weight:\n", step+1);
-        weight_updating(&data[step], weight, func_res);   
-    }  
-    
-    
-  } 
-
-    return 0;
+        printf("%d. Enter data (x1, x2, expected_value): ", i + 1);
+        scanf("%lf %lf %d", &data[i].x1_, &data[i].x2_, &data[i].expected_);
+    }
 }
 
-int activation_func(Node* node, double weight[])
+void perceptron_train(Data *data)
 {
-
-  double res = node->x_ * weight[0] + node->y_ * weight[1] + BIAS * weight[2];
-  printf("\nActivation function result:%lf.\n",res);
-  return ((res >= 0) ? 1 : -1);
-}
-
-void weight_updating(Node* node, double *weight, int func_res)
-{ 
-  weight[0] = weight[0] + LEARNING_RATE * (node->expected_value_ - func_res)*node->x_; 
-  weight[1] = weight[1] + LEARNING_RATE * (node->expected_value_ - func_res)*node->y_; 
-  weight[2] = weight[2] + LEARNING_RATE * (node->expected_value_ - func_res)*BIAS; 
-  
-}
-
-void initialize_data(Node* data, double* weight)
-{
-  int step;
-  // INITIALIZING NODE
-  printf("INITIALIZING DATA FROM USER..\n");
-  for(step = 0; step < DATA_SIZE; step++)
-  {
-    printf("%d. Enter data (x1, x2, expected_value): ", step + 1);
-    scanf("%lf %lf %d", &data[step].x_, &data[step].y_, &data[step].expected_value_);
-  }
-  // INITIALIZING WEIGHT
+    double w1, w2, w3;
     printf("Enter weight(w1,w2,w3): ");
-    scanf("%lf %lf %lf", &weight[0], &weight[1], &weight[2]);
+    scanf("%lf %lf %lf", &w1, &w2, &w3);
+
+    int epoch = 0;
+    int all_correct;
+
+    do
+    {
+        all_correct = 1;
+        printf("\n--- EPOCH %d ---\n", epoch + 1);
+
+        for (int i = 0; i < DATA_SIZE; i++)
+        {
+            int result = activation(data[i].x1_, data[i].x2_, w1, w2, w3);
+
+            if (result != data[i].expected_)
+            {
+                // update weights
+                w1 += LEARNING_RATE * data[i].expected_ * data[i].x1_;
+                w2 += LEARNING_RATE * data[i].expected_ * data[i].x2_;
+                w3 += LEARNING_RATE * data[i].expected_;
+
+                all_correct = 0; // still need training
+                printf("Adjusted weights -> w1=%.3f w2=%.3f w3=%.3f\n", w1, w2, w3);
+            }
+        }
+
+        epoch++;
+
+    } while (!all_correct && epoch < MAX_EPOCHS);
+
+    printf("\nTraining complete!\n");
+    printf("Final weights: w1=%.3f, w2=%.3f, w3=%.3f\n", w1, w2, w3);
 }
 
-void print_data(Node* data, double* weight, int step)
+int main(void)
 {
-  printf("\npoint %d:\nx1 = %lf\nx2 = %lf\nexpected_value = %d\n", step+1, data->x_, data->y_, data->expected_value_);
-
-  printf("\nCurrent weight: {%lf, %lf, %lf}", weight[0], weight[1], weight[2]);
+    Data data[DATA_SIZE];
+    initialize_data(data);
+    perceptron_train(data);
+    return 0;
 }

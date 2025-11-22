@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['features_0',['features',['../structPatientData.html#a08dc0928c7e2db104eefd08658f6d9f5',1,'PatientData']]],
+  ['forward_1',['forward',['../classNeuralNetwork.html#a309b9df4aaeb11ca5e226642aab7ff1d',1,'NeuralNetwork']]]
+];

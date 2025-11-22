@@ -1,0 +1,145 @@
+\doxysection{Neural\+Network Class Reference}
+\hypertarget{classNeuralNetwork}{}\label{classNeuralNetwork}\index{NeuralNetwork@{NeuralNetwork}}
+
+
+{\ttfamily \#include $<$neuralnetwork.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNeuralNetwork_accce4a7728e89a009a9d4ca1758c9b9d}{Neural\+Network}} ()
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classNeuralNetwork_a309b9df4aaeb11ca5e226642aab7ff1d}{forward}} (const std\+::vector$<$ double $>$ \&x)
+\item 
+void \mbox{\hyperlink{classNeuralNetwork_a64a5c9f89030388e79809ab9144852de}{backward}} (const std\+::vector$<$ double $>$ \&x, const std\+::vector$<$ double $>$ \&target)
+\item 
+double \mbox{\hyperlink{classNeuralNetwork_a6253b39e00fba8829b809aebcb108a48}{compute\+Loss}} (const std\+::vector$<$ double $>$ \&target)
+\item 
+void \mbox{\hyperlink{classNeuralNetwork_a23b845ee5334633253afb7ca6606d98f}{train\+Epoch}} (const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&X, const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&targets)
+\item 
+void \mbox{\hyperlink{classNeuralNetwork_a81c9ac36a45bf9d4ae182b048cc0fc8a}{compute\+Normalization}} (const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&X)
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{classNeuralNetwork_a33fcce4e13001fd71763b4f3e878e3c6}{get\+Weights}} () const
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classNeuralNetwork_a8a477194c21eb1ec513e615a0bc0a2ce}{get\+Outputs}} () const
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classNeuralNetwork_ae8558238bb29edffb8367d035726d69c}{get\+Net\+Inputs}} () const
+\item 
+int \mbox{\hyperlink{classNeuralNetwork_a3e61be064fe65cc6b38ac4997701836b}{get\+Predicted\+Class}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Single-\/layer neural network with Softmax output for multi-\/class classification 
+
+\label{doc-constructors}
+\Hypertarget{classNeuralNetwork_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classNeuralNetwork_accce4a7728e89a009a9d4ca1758c9b9d}\index{NeuralNetwork@{NeuralNetwork}!NeuralNetwork@{NeuralNetwork}}
+\index{NeuralNetwork@{NeuralNetwork}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{NeuralNetwork()}{NeuralNetwork()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_accce4a7728e89a009a9d4ca1758c9b9d} 
+Neural\+Network\+::\+Neural\+Network (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructor -\/ initializes network with random weights 
+
+\label{doc-func-members}
+\Hypertarget{classNeuralNetwork_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNeuralNetwork_a64a5c9f89030388e79809ab9144852de}\index{NeuralNetwork@{NeuralNetwork}!backward@{backward}}
+\index{backward@{backward}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{backward()}{backward()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a64a5c9f89030388e79809ab9144852de} 
+void Neural\+Network\+::backward (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{x}{, }\item[{const std\+::vector$<$ double $>$ \&}]{target}{}\end{DoxyParamCaption})}
+
+Backward pass -\/ updates weights using gradient descent 
+\begin{DoxyParams}{Parameters}
+{\em x} & Input features \\
+\hline
+{\em target} & Target values (one-\/hot) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNeuralNetwork_a6253b39e00fba8829b809aebcb108a48}\index{NeuralNetwork@{NeuralNetwork}!computeLoss@{computeLoss}}
+\index{computeLoss@{computeLoss}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{computeLoss()}{computeLoss()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a6253b39e00fba8829b809aebcb108a48} 
+double Neural\+Network\+::compute\+Loss (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{target}{}\end{DoxyParamCaption})}
+
+Computes cross-\/entropy loss 
+\begin{DoxyParams}{Parameters}
+{\em target} & Target values (one-\/hot) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Loss value 
+\end{DoxyReturn}
+\Hypertarget{classNeuralNetwork_a81c9ac36a45bf9d4ae182b048cc0fc8a}\index{NeuralNetwork@{NeuralNetwork}!computeNormalization@{computeNormalization}}
+\index{computeNormalization@{computeNormalization}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{computeNormalization()}{computeNormalization()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a81c9ac36a45bf9d4ae182b048cc0fc8a} 
+void Neural\+Network\+::compute\+Normalization (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{X}{}\end{DoxyParamCaption})}
+
+Computes normalization parameters from training data 
+\begin{DoxyParams}{Parameters}
+{\em X} & Training samples \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNeuralNetwork_a309b9df4aaeb11ca5e226642aab7ff1d}\index{NeuralNetwork@{NeuralNetwork}!forward@{forward}}
+\index{forward@{forward}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a309b9df4aaeb11ca5e226642aab7ff1d} 
+std\+::vector$<$ double $>$ Neural\+Network\+::forward (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{x}{}\end{DoxyParamCaption})}
+
+Forward pass -\/ computes softmax outputs 
+\begin{DoxyParams}{Parameters}
+{\em x} & Input features (20) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Output probabilities (4) 
+\end{DoxyReturn}
+\Hypertarget{classNeuralNetwork_ae8558238bb29edffb8367d035726d69c}\index{NeuralNetwork@{NeuralNetwork}!getNetInputs@{getNetInputs}}
+\index{getNetInputs@{getNetInputs}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{getNetInputs()}{getNetInputs()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_ae8558238bb29edffb8367d035726d69c} 
+std\+::vector$<$ double $>$ Neural\+Network\+::get\+Net\+Inputs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns last computed net inputs \Hypertarget{classNeuralNetwork_a8a477194c21eb1ec513e615a0bc0a2ce}\index{NeuralNetwork@{NeuralNetwork}!getOutputs@{getOutputs}}
+\index{getOutputs@{getOutputs}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{getOutputs()}{getOutputs()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a8a477194c21eb1ec513e615a0bc0a2ce} 
+std\+::vector$<$ double $>$ Neural\+Network\+::get\+Outputs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns last computed outputs \Hypertarget{classNeuralNetwork_a3e61be064fe65cc6b38ac4997701836b}\index{NeuralNetwork@{NeuralNetwork}!getPredictedClass@{getPredictedClass}}
+\index{getPredictedClass@{getPredictedClass}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{getPredictedClass()}{getPredictedClass()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a3e61be064fe65cc6b38ac4997701836b} 
+int Neural\+Network\+::get\+Predicted\+Class (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Returns predicted class index \Hypertarget{classNeuralNetwork_a33fcce4e13001fd71763b4f3e878e3c6}\index{NeuralNetwork@{NeuralNetwork}!getWeights@{getWeights}}
+\index{getWeights@{getWeights}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{getWeights()}{getWeights()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a33fcce4e13001fd71763b4f3e878e3c6} 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ Neural\+Network\+::get\+Weights (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns current weights \Hypertarget{classNeuralNetwork_a23b845ee5334633253afb7ca6606d98f}\index{NeuralNetwork@{NeuralNetwork}!trainEpoch@{trainEpoch}}
+\index{trainEpoch@{trainEpoch}!NeuralNetwork@{NeuralNetwork}}
+\doxysubsubsection{\texorpdfstring{trainEpoch()}{trainEpoch()}}
+{\footnotesize\ttfamily \label{classNeuralNetwork_a23b845ee5334633253afb7ca6606d98f} 
+void Neural\+Network\+::train\+Epoch (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{X}{, }\item[{const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{targets}{}\end{DoxyParamCaption})}
+
+Trains network for one epoch on batch of data 
+\begin{DoxyParams}{Parameters}
+{\em X} & Input samples \\
+\hline
+{\em targets} & Target values \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 0
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{neuralnetwork_8h}{neuralnetwork.\+h}}\item 
+\mbox{\hyperlink{neuralnetwork_8cpp}{neuralnetwork.\+cpp}}\end{DoxyCompactItemize}

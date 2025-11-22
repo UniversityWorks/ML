@@ -1,31 +1,16 @@
-/*
- *                                          __                        
-______   ___________   ____  ____ _______/  |________  ____   ____  
-\____ \_/ __ \_  __ \_/ ___\/ __ \\____ \   __\_  __ \/  _ \ /    \ 
-|  |_> >  ___/|  | \/\  \__\  ___/|  |_> >  |  |  | \(  <_> )   |  \
-|   __/ \___  >__|    \___  >___  >   __/|__|  |__|   \____/|___|  /
-|__|        \/            \/    \/|__|                           \/ */
-#include <stdio.h>
 
-
-#define     DATA_SIZE        10
-#define     WEIGHT_SIZE      3
-#define     LEARNING_RATE    0.15
-#define     BIAS             1
+#ifndef PERCEPTRON_H
+#define PERCEPTRON_H
 
 typedef struct
 {
-  double x_;
-  double y_;
-  short expected_value_;
-} Node;
+    double x1_;
+    double x2_;
+    int expected_;
+} Data;
 
+int activation(double x1, double x2, double w1, double w2, double w3);
+void initialize_data(Data *data);
+void perceptron_train(Data *data);
 
-int activation_func(Node* node, double weight[]);
-
-void weight_updating(Node* data, double* weight, int func_res);
-
-void initialize_data(Node* data, double* weight);
-
-void print_data(Node* data, double* weight, int step);
-
+#endif

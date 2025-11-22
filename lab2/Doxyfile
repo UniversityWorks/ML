@@ -1,0 +1,20 @@
+PROJECT_NAME           = "Disease Classification - Softmax Neural Network"
+
+OUTPUT_DIRECTORY       = ./docs
+
+EXTRACT_ALL            = YES
+
+INPUT                  = . \
+                         neuralnetwork.h \
+                         neuralnetwork.cpp \
+                         mainwindow.h \
+                         mainwindow.cpp \
+                         main.cpp
+
+RECURSIVE              = NO
+
+GENERATE_HTML          = YES
+
+HAVE_DOT               = YES
+CLASS_GRAPH            = YES
+CALL_GRAPH             = YES

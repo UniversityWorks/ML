@@ -1,0 +1,82 @@
+\doxysection{mainwindow.\+h}
+\hypertarget{mainwindow_8h_source}{}\label{mainwindow_8h_source}\mbox{\hyperlink{mainwindow_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ MAINWINDOW\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ MAINWINDOW\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QLineEdit>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QTextEdit>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QHBoxLayout>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QGroupBox>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <QTableWidget>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <QComboBox>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <QFileDialog>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{neuralnetwork_8h}{neuralnetwork.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPatientData}{PatientData}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{structPatientData_a08dc0928c7e2db104eefd08658f6d9f5}{features}};\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structPatientData_a29f8d2db8b49a2c64d58659b8e1e8ed2}{diagnosis}};\ }
+\DoxyCodeLine{00026\ \ \ \ \ QString\ \mbox{\hyperlink{structPatientData_a142ff194d8629b11572b3c713398682f}{name}};\ }
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMainWindow_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classNeuralNetwork}{NeuralNetwork}}*\ network;\ }
+\DoxyCodeLine{00038\ \ \ \ \ std::vector<PatientData>\ patients;\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ currentPatientIndex;\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ QTableWidget*\ dataTable;\ }
+\DoxyCodeLine{00042\ \ \ \ \ QComboBox*\ patientSelector;\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ QLabel*\ outputY0;\ }
+\DoxyCodeLine{00045\ \ \ \ \ QLabel*\ outputY1;\ }
+\DoxyCodeLine{00046\ \ \ \ \ QLabel*\ outputY2;\ }
+\DoxyCodeLine{00047\ \ \ \ \ QLabel*\ outputY3;\ }
+\DoxyCodeLine{00048\ \ \ \ \ QLabel*\ predictedClass;\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ QPushButton*\ btnClassify;\ }
+\DoxyCodeLine{00051\ \ \ \ \ QPushButton*\ btnTrain;\ }
+\DoxyCodeLine{00052\ \ \ \ \ QPushButton*\ btnLoadCSV;\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ QTextEdit*\ trainingLog;\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{int}\ trainingIteration;\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ QStringList\ featureNames;\ }
+\DoxyCodeLine{00058\ \ \ \ \ QStringList\ classNames;\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ setupUI();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeData();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ updateOutputs();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ updateDataTable();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ loadPatientToTable(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ onClassify();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ onTrain();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ onLoadCSV();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ onPatientSelected(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classMainWindow_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classMainWindow_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAINWINDOW\_H}}
+
+\end{DoxyCode}
